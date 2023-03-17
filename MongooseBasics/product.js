@@ -36,6 +36,7 @@ const productSchema = new mongoose.Schema({
     },
     size: {
         type: String,
+        // Checks if the value is in the array, returns error
         enum: ['S', 'M', 'L']
     }
 
@@ -104,5 +105,3 @@ const findProduct = async () => {
 //         console.log("OH NO ERROR!")
 //         console.log(err)
 //     })
-
-

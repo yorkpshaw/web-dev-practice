@@ -1,10 +1,15 @@
 const express = require('express');
 const app = express();
+
+// path allows the app to access other folders
 const path = require('path');
+
 const mongoose = require('mongoose');
+
+// methodOverride allows you to use certain CRUD operations where they may not be doable
 const methodOverride = require('method-override')
 
-
+// Imported from models folder
 const Product = require('./models/product');
 
 mongoose.connect('mongodb://localhost:27017/farmStand', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -16,8 +21,10 @@ mongoose.connect('mongodb://localhost:27017/farmStand', { useNewUrlParser: true,
         console.log(err)
     })
 
-
+// Connects the views folder
 app.set('views', path.join(__dirname, 'views'));
+
+// Specify a view engine to render HTML, ejs is the view engine
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
@@ -71,9 +78,7 @@ app.delete('/products/:id', async (req, res) => {
 })
 
 
-
+// Starts the server to listen for incoming requests
 app.listen(3000, () => {
     console.log("APP IS LISTENING ON PORT 3000!")
 })
-
-
